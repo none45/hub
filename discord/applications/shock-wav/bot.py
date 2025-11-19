@@ -42,19 +42,16 @@ async def register_command(func_name):
 
     @tree.command(name=command_name, description=f"Run {command_name}")
     async def generic_call(interaction: discord.Interaction):
-        # prepare args from info table
         args_table = info.get("args", {})
         args = {}
         for key in args_table:
             if args_table[key] == "user_id":
                 args[key] = interaction.user.id
             else:
-                args[key] = ""  # default empty string
+                args[key] = ""
 
-        # run function with user + args
         result = functions_manager.run_function(func_name, user=interaction.user, args=args)
 
-        # handle ephemeral / actions
         if isinstance(result, dict):
             content = result.get("content", "")
             ephemeral = result.get("ephemeral", False)
@@ -68,10 +65,19 @@ async def register_command(func_name):
 
 @bot.event
 async def on_ready():
+    # set bot online and activity
+    await bot.change_presence(
+        status=discord.Status.online,
+        activity=discord.Game(name="with functions")
+    )
+
+    # register slash commands
     for func_name in functions_files:
         await register_command(func_name)
     await tree.sync()
-    print(f"{bot.user} online")
+
+    # print immediately
+    print(f"{bot.user} online and status set")
 
 # ---------- Run Bot ----------
 bot.run(TOKEN)
