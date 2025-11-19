@@ -1,6 +1,5 @@
 def main(user, args):
-    # read OWNER_ID from globals txt
-    with open("globals/OWNER_ID.txt", "r") as f:
+    with open("globals/owner_id.txt", "r") as f:
         OWNER_ID = int(f.read().strip())
 
     if user.id != OWNER_ID:
@@ -10,5 +9,5 @@ def main(user, args):
 
 info = {
     "name": "shutdown",
-    "args": {}  # no args needed
+    "args": {}
 }
