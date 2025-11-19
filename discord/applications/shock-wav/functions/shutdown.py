@@ -1,4 +1,5 @@
 def main(user, args):
+    # read OWNER_ID from globals txt
     with open("globals/OWNER_ID.txt", "r") as f:
         OWNER_ID = int(f.read().strip())
 
@@ -9,5 +10,5 @@ def main(user, args):
 
 info = {
     "name": "shutdown",
-    "args": {}
+    "args": {}  # no args needed
 }
