@@ -20,7 +20,7 @@ if not TOKEN:
     raise Exception(f"Token for {BOT_NAME} not found!")
 
 # ---------- Read OWNER_ID from globals txt ----------
-with open("globals/OWNER_ID.txt", "r") as f:
+with open("globals/owner_id.txt", "r") as f:
     OWNER_ID = int(f.read().strip())
 
 # ---------- Bot Setup ----------
