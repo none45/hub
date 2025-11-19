@@ -14,7 +14,7 @@ if not tokens_json:
     raise Exception("DISCORD_APP_TOKENS env variable not found!")
 
 tokens = json.loads(tokens_json)
-BOT_NAME = "BOT1"  # change per bot
+BOT_NAME = "shock-wav"
 TOKEN = tokens.get(BOT_NAME)
 if not TOKEN:
     raise Exception(f"Token for {BOT_NAME} not found!")
